@@ -48,11 +48,11 @@ KERNEL_DIR="$(pwd)"
 BASEDIR="$(basename "$KERNEL_DIR")"
 
 # The name of the Kernel, to name the ZIP
-ZIPNAME="Xea-X0#"
+ZIPNAME="NoName-X00T"
 
 # Build Author
 # Take care, it should be a universal and most probably, case-sensitive
-AUTHOR="vcyzteen"
+AUTHOR="Daffa06"
 
 # Architecture
 ARCH=arm64
@@ -86,7 +86,7 @@ PTTG=1
 	if [ $PTTG = 1 ]
 	then
 		# Set Telegram Chat ID
-		CHATID="-1001721818658"
+		CHATID="-1001489325405"
 	fi
 
 # Generate a full DEFCONFIG prior building. 1 is YES | 0 is NO(default)
