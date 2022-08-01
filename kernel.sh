@@ -128,7 +128,7 @@ VERBOSE=0
 
 # Debug purpose. Send logs on every successfull builds
 # 1 is YES | 0 is NO(default)
-LOG_DEBUG=0
+LOG_DEBUG=1
 
 ##------------------------------------------------------##
 ##---------Do Not Touch Anything Beyond This------------##
@@ -383,7 +383,7 @@ gen_zip() {
 
 	if [ "$PTTG" = 1 ]
  	then
-		tg_post_build "$ZIP_FINAL.zip" "Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
+		tg_post_build "$ZIP_FINAL.zip" "✅ Build took : $((DIFF / 60)) minute(s) and $((DIFF % 60)) second(s)"
 	fi
 	cd ..
 }
