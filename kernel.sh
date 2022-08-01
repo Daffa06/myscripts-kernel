@@ -86,7 +86,7 @@ PTTG=1
 	if [ $PTTG = 1 ]
 	then
 		# Set Telegram Chat ID
-		CHATID="-1001489325405"
+		CHATID="-635122233"
 	fi
 
 # Generate a full DEFCONFIG prior building. 1 is YES | 0 is NO(default)
@@ -198,7 +198,7 @@ DATE=$(TZ=Asia/Jakarta date +"%Y%m%d-%T")
 	fi
 
 	msg "|| Cloning Anykernel ||"
-	git clone --depth 1 --no-single-branch https://github.com/"$AUTHOR"/AnyKernel3.git -b 12
+	git clone --depth 1 --no-single-branch https://github.com/"$AUTHOR"/AnyKernel3.git -b master-x00td
 
 	if [ $BUILD_DTBO = 1 ]
 	then
