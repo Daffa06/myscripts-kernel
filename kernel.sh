@@ -148,22 +148,35 @@ export KBUILD_BUILD_HOST CI_BRANCH TERM
 ## Check for CI
 if [ "$CI" ]
 then
-	if [ "$CIRCLECI" ]
-	then
-		export KBUILD_BUILD_VERSION=$CIRCLE_BUILD_NUM
-		export KBUILD_BUILD_HOST="CircleCI"
-		export CI_BRANCH=$CIRCLE_BRANCH
-	fi
-	if [ "$DRONE" ]
-	then
-		export KBUILD_BUILD_VERSION=$DRONE_BUILD_NUMBER
-		export KBUILD_BUILD_HOST=$DRONE_SYSTEM_HOST
-		export CI_BRANCH=$DRONE_BRANCH
-		export BASEDIR=$DRONE_REPO_NAME # overriding
-		export SERVER_URL="${DRONE_SYSTEM_PROTO}://${DRONE_SYSTEM_HOSTNAME}/${AUTHOR}/${BASEDIR}/${KBUILD_BUILD_VERSION}"
-	else
-		echo "Not presetting Build Version"
-	fi
+    if [ "$CIRCLECI" ]
+    then
+        export KBUILD_BUILD_VERSION=$CIRCLE_BUILD_NUM
+        export KBUILD_BUILD_HOST="CircleCI"
+        export CI_BRANCH=$CIRCLE_BRANCH
+    fi
+
+    if [ "$DRONE" ]
+    then
+        export KBUILD_BUILD_VERSION=$DRONE_BUILD_NUMBER
+        export KBUILD_BUILD_HOST=$DRONE_SYSTEM_HOST
+        export CI_BRANCH=$DRONE_BRANCH
+        export BASEDIR=$DRONE_REPO_NAME # overriding
+        export SERVER_URL="${DRONE_SYSTEM_PROTO}://${DRONE_SYSTEM_HOSTNAME}/${AUTHOR}/${BASEDIR}/${KBUILD_BUILD_VERSION}"
+    fi
+
+    if [ "$SEMAPHORE" ]
+    then
+        export KBUILD_BUILD_VERSION=$SEMAPHORE_WORKFLOW_ID
+        export KBUILD_BUILD_HOST="SemaphoreCI"
+        export CI_BRANCH=$SEMAPHORE_GIT_BRANCH
+        export KBUILD_MACHINE_TYPE=$SEMAPHORE_MACHINE_TYPE
+        export KBUILD_OS_IMAGE=$SEMAPHORE_OS_IMAGE
+    fi
+
+    if [ -z "$KBUILD_BUILD_VERSION" ]
+    then
+        echo "Not presetting Build Version"
+    fi
 fi
 
 #Check Kernel Version
